@@ -18,6 +18,12 @@ goose_msg = {
     "allData"               : None
     #default allData in wireshark
     #b"\x83\x01\x00\x84\x03\x03\x00\x00\x83\x01\x00\x84\x03\x03\x00\x00\x83\x01\x00\x84\x03\x03\x00\x00\x83\x01\x00\x84\x03\x03\x00\x00"
+    # x83 - Boolean     ---- x00 False, x01 True
+    # x84 - Bit String  ---- Example: \x84\x03\x03\x00\x00 (real padding, padding number, bits)
+    # x85 - Int         ---- Example: \x85\x04\x00\x00\x00\x00 (4 bit 0000)
+    # x86 - unsigned    ---- \x86\x05\x65\x64\x63\x62\x00
+
+    # x8a - visible string --- example: \x8a\x05\x65\x64\x63\x62\x00 (length, ascii values, null)
 }
 
 def main():

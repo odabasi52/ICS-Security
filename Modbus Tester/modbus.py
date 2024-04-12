@@ -21,8 +21,11 @@ class MODBUS:
         while True:
             try:
                 rr = self.client.read_holding_registers(0, 100)
-                print(rr.registers)
-                time.sleep(1)
+                for i, r in enumerate(rr.registers):
+                    if r != 0:
+                        print(f"({i}, {r})")
+                print()
+                time.sleep(0.2)
             except ConnectionException:
                 print(f"Could not connect to Modbus port on {self.target_ip}")
                 sys.exit()
@@ -33,6 +36,7 @@ class MODBUS:
         try:
             reg = int(input("Registiry [0 - 100]: "))
             val = int(input("Value to be set: "))
+            
         except:
             print("Enter valid input next time")
             sys.exit()
